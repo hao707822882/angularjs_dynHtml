@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-controller="test">
+
+<h1>测试</h1>
+<script src="jquery.js"></script>
+<script src="angular.js"></script>
+<div id="add">
+    <input ng-model="arr[0]"/>
+
+</div>
+<button ng-click="tick()">打印</button>
+<script>
+    function test($scope, $compile) {
+        $scope.arr = [1]
+        $scope.tick = function () {
+            console.log($scope.arr[1]);
+        }
+
+
+        var html = "<div ng-click='test()'>我是后添加的<input ng-model='arr[1]'/></div>";
+        var template = angular.element(html);
+        var mobileDialogElement = $compile(template)($scope);
+        angular.element("#add").append(mobileDialogElement); // remove移除创建的元素
+        var closeMobileDialog = function () {
+            if (mobileDialogElement) {
+                mobileDialogElement.remove();
+            }
+        }
+    }
+    //通过$compile动态编译 html
+
+</script>
+
+
+</body>
+</html>
